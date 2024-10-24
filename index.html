@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPL Tipping Competition</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
 
+<body>
+    <h1>Tipper Names and Points</h1>
+    <table id="tipperTable">
+        <thead>
+            <tr>
+                <th>Tipper Name</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Rows will be populated here -->
+        </tbody>
+    </table>
+
+<br>
+    <label for="tippernames">Select Your Name:</label>
+    <select id="tippernames" name="names">
+        <option value="">--Select a Name--</option>
+        <option value="John">John</option>
+        <option value="Peter">Peter</option>
+        <option value="Philip">Philip</option>
+        <option value="Patrick">Patrick</option>
+        <option value="Jose">Jose</option>
+        <option value="Michael">Michael</option>
+        <option value="CA">CA</option>
+        <option value="Chris">Chris</option>
+        <option value="Gilly">Gilly</option>
+        <option value="Russel">Russel</option>
+        <option value="Ben">Ben</option>
+        <option value="Cameron">Cameron</option>
+        <option value="Jeremy">Jeremy</option>
+    </select>
+
+<h3>Latest English Premier League Match Fixtures</h3>
+<iframe src="https://www.premierleague.com/fixtures" width="100%" height="1000px"></iframe>
+
+</html>
+<script>
+     // Sample data
+const tippernames = [
+    { name: "CA", points: 50 },
+    { name: "Philip", points: 75 },
+    { name: "John", points: 60 },
+    { name: "Patrick", points: 90 },
+    { name: "Peter", points: 80 },
+    { name: "Jose", points: 70 },
+    { name: "Michael", points: 85 },
+    { name: "Chris", points: 65 },
+    { name: "Gilly", points: 55 },
+    { name: "Russel", points: 45 },
+    { name: "Ben", points: 40 },
+    { name: "Cameron", points: 35 },
+    { name: "Jeremy", points: 30 }
+];
+
+        // Sort the array in descending order by points
+        tippernames.sort((a, b) => b.points - a.points);
+
+        // Function to create and populate the table
+        function createTable() {
+            const tableBody = document.getElementById('tableBody');
+
+            // Clear existing rows
+            tableBody.innerHTML = '';
+
+            // Populate the table with sorted data
+            tippernames.forEach(tipper => {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                const pointsCell = document.createElement('td');
+
+                nameCell.textContent = tipper.name;
+                pointsCell.textContent = tipper.points;
+
+                row.appendChild(nameCell);
+                row.appendChild(pointsCell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Call the function to create the table
+        createTable();
+        // Map of names to Google Sheets URLs
+        const googleSheetLinks = {
+            "John": "https://docs.google.com/spreadsheets/d/1Tk2PnaQ7iV-PCdTqkojuWyKR7dBkJFdotuTVhKXDc7U",
+            "Peter": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_PETER",
+            "Philip": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_PHILIP",
+            "Patrick": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_PATRICK",
+            "Jose": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_JOSE",
+            "Michael": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_MICHAEL",
+            "CA": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_CA",
+            "Chris": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_CHRIS",
+            "Gilly": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_GILLY",
+            "Russel": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_RUSSEL",
+            "Ben": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_BEN",
+            "Cameron": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_CAMERON",
+            "Jeremy": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_FOR_JEREMY"
+        };
+
+        // Event listener for dropdown selection
+        document.getElementById('tippernames').addEventListener('change', function() {
+            const selectedName = this.value;
+            if (selectedName && googleSheetLinks[selectedName]) {
+                // Redirect to the corresponding Google Sheet
+                window.location.href = googleSheetLinks[selectedName];
+            }
+        });
+    </script>
+
+</body>
+</html>
+</script>
+
+
+<!-- Suggested code for ditionoary-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Scoreboard</h2>
+    <table id="scoreboardTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            //Rows will be populated here 
+        </tbody>
+    </table>
+
+    <script>
+        // Sample data (replace this with your actual Python dictionary data)
+        const scoreboard = {
+            'Philip': { 'rank': 1, 'score': 50 },
+            'John': { 'rank': 2, 'score': 40 },
+            'Jose': { 'rank': 3, 'score': 60 },
+            'Gilly': { 'rank': 4, 'score': 70 },
+            'Jeremy': { 'rank': 5, 'score': 30 },
+            'CA': { 'rank': 6, 'score': 80 },
+            'Mike': { 'rank': 7, 'score': 90 },
+            'Russel': { 'rank': 8, 'score': 20 },
+            'Ben': { 'rank': 9, 'score': 10 },
+            'Patrick': { 'rank': 10, 'score': 100 },
+            'Peter': { 'rank': 11, 'score': 55 },
+            'Chris': { 'rank': 12, 'score': 65 },
+            'Cameron': { 'rank': 13, 'score': 75 }
+        };
+
+        const tableBody = document.getElementById('tableBody');
+
+        // Populate the table with data from the scoreboard
+        for (const [name, info] of Object.entries(scoreboard)) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${name}</td><td>${info.rank}</td><td>${info.score}</td>`;
+            tableBody.appendChild(row);
+        }
+    </script>
+
+</body>
+</html>
+-->

@@ -1,3 +1,6 @@
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
 theme: jekyll-theme-minimal
 title: [PL Tips Comp]
 description: [A webpage to host our Premier League Tipping Competition. It should show leaderboards and the Bonus points table and allow tippers to submit their weekly tips]
